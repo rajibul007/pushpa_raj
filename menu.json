@@ -1,0 +1,12 @@
+[
+    {"id": 1, "name": "Paneer Tikka", "category": "Veg"},
+    {"id": 2, "name": "Chicken Biryani", "category": "Non-Veg"},
+    {"id": 3, "name": "Aloo Gobi", "category": "Veg"},
+    {"id": 4, "name": "Butter Chicken", "category": "Non-Veg"},
+    {"id": 5, "name": "Chana Masala", "category": "Veg"},
+    {"id": 6, "name": "Fish Curry", "category": "Non-Veg"},
+    {"id": 7, "name": "Palak Paneer", "category": "Veg"},
+    {"id": 8, "name": "Mutton Rogan Josh", "category": "Non-Veg"},
+    {"id": 9, "name": "Dal Tadka", "category": "Veg"},
+    {"id": 10, "name": "Egg Curry", "category": "Non-Veg"}
+]
