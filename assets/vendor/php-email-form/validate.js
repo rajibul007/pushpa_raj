@@ -13,14 +13,15 @@
       event.preventDefault();
 
       let thisForm = this;
+      let errorMsg = "failed to submit"
 
       let action = thisForm.getAttribute('action');
       let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
       
-      if( ! action ) {
-        displayError(thisForm, 'The form action property is not set!');
-        return;
-      }
+      // if( ! action ) {
+      //   displayError(thisForm, 'The form action property is not set!');
+      //   return;
+      // }
       thisForm.querySelector('.loading').classList.add('d-block');
       thisForm.querySelector('.error-message').classList.remove('d-block');
       thisForm.querySelector('.sent-message').classList.remove('d-block');
@@ -37,11 +38,11 @@
                 php_email_form_submit(thisForm, action, formData);
               })
             } catch(error) {
-              displayError(thisForm, error);
+              displayError(thisForm, errorMsg);
             }
           });
         } else {
-          displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
+          displayError(thisForm, "failed to submit")
         }
       } else {
         php_email_form_submit(thisForm, action, formData);
@@ -72,7 +73,7 @@
       }
     })
     .catch((error) => {
-      displayError(thisForm, error);
+      displayError(thisForm, "failed to submit");
     });
   }
 

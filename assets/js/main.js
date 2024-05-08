@@ -44,9 +44,6 @@
                 <a href="#">${item.name}</a>
                 <button id="vote-button">like</button>
             </div>
-            <div class="menu-ingredients">
-                Lorem ipsum dolor sit amet
-            </div>
         `;
         menuItem.addEventListener('click', () => handleVote(item.name));
         menuContainer.appendChild(menuItem);
@@ -73,11 +70,11 @@ function generateAnnouce(data) {
 
   data.forEach((item, index) => {
       const menuItem = document.createElement('div');
-      // menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.classList.add('col-lg-6', 'menu-item');
       menuItem.innerHTML = `
-          <p class="menu-content">
+          <span class="menu-content">
                ${item.message}
-          </p>
+          </span>
       `;
       menuContainer.appendChild(menuItem);
   });
@@ -137,13 +134,14 @@ loadJSON("data/vote.json", generateVotedMenu);
 
   function submitFormData(param) {
     console.log(param);
-    const form = document.querySelector('.php-email-form');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+    const form = document.getElementById(param+"-form");
+    // form.addEventListener('submit',
+   //  function(event) {
+    //    event.preventDefault();
         
         const formData = new FormData(form);
         let dataString = '';
-
+        console.log(formData)
         formData.forEach((value, key) => {
             dataString += `${key}=${encodeURIComponent(value)}&`;
         });
@@ -151,7 +149,7 @@ loadJSON("data/vote.json", generateVotedMenu);
         // Remove the last '&' character
         dataString = dataString.slice(0, -1);
 
-        const url = 'YOUR_API_ENDPOINT?' + dataString;
+        const url = 'YOUR_API_ENDPOINT?' + dataString + "&" +"action="+ param;
 
         // Send GET request to the API endpoint
         fetch(url, {
@@ -168,18 +166,20 @@ loadJSON("data/vote.json", generateVotedMenu);
         })
         .then(data => {
             // Handle the response data here if needed
-            alert(data);
+            //alert(data);
         })
         .catch(error => {
             console.log(error)
-            alert('There was a problem with your fetch operation:', error);
+           // alert('There was a problem with your fetch operation:', error);
         });
-    });
+    //};
 }
 
-document.getElementById("submitFeedback").addEventListener("click", () => submitFormData('feedback'))
+document.getElementById("submitFeedback").addEventListener("click", () => submitFormData('submitFeedback'))
 document.getElementById("addweeklydish").addEventListener("click", () => submitFormData('addweeklydish'))
-document.getElementById("suggest").addEventListener("click", () => submitFormData('suggestdish'))
+document.getElementById("suggest").addEventListener("click", () => submitFormData('suggest'))
+document.getElementById("notify-submit").addEventListener("click", () => submitFormData('notify-submit'))
+
 
 
 
