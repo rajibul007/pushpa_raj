@@ -149,7 +149,7 @@ loadJSON("data/vote.json", generateVotedMenu);
         // Remove the last '&' character
         dataString = dataString.slice(0, -1);
 
-        const url = 'YOUR_API_ENDPOINT?' + dataString + "&" +"action="+ param;
+        const url = 'https://rv1psv5feb.execute-api.us-east-1.amazonaws.com'+"?" + dataString + "&" +"action="+ param;
 
         // Send GET request to the API endpoint
         fetch(url, {
