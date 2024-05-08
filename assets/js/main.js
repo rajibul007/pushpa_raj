@@ -42,7 +42,7 @@
         menuItem.innerHTML = `
             <div class="menu-content">
                 <a href="#">${item.name}</a>
-                <button id="vote-button">vote</button>
+                <button id="vote-button">like</button>
             </div>
             <div class="menu-ingredients">
                 Lorem ipsum dolor sit amet
