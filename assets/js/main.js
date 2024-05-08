@@ -6,8 +6,54 @@
 * License: https://bootstrapmade.com/license/
 */
 
+
 (function() {
   "use strict";
+  
+  function loadJSON(path, callback) {
+    fetch(path) // Adjust the path to your JSON file
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+          callback(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+        });
+  };
+
+  const handleVote = (item) => {
+    console.log(item)
+    fetch(`http://voting_url?${item}`)
+    .then(data => alert('Your vote submitted successfully !!!'))
+    .catch(error => console.log(error))
+  }
+
+  function generateMenu(data) {
+    const menuContainer = document.getElementById('menu-container');
+
+    data.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('col-lg-6', 'menu-item', `filter-${item.category.toLowerCase()}`);
+        menuItem.innerHTML = `
+            <div class="menu-content">
+                <a href="#">${item.name}</a>
+                <button id="vote-button">vote</button>
+            </div>
+            <div class="menu-ingredients">
+                Lorem ipsum dolor sit amet
+            </div>
+        `;
+        menuItem.addEventListener('click', () => handleVote(item.name));
+        menuContainer.appendChild(menuItem);
+    });
+};
+
+loadJSON("data/menuData.json", generateMenu);
 
   function submitFormData() {
     const form = document.querySelector('.php-email-form');
