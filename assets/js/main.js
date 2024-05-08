@@ -53,9 +53,90 @@
     });
 };
 
-loadJSON("data/menuData.json", generateMenu);
 
-  function submitFormData() {
+function generateUpcomingMenu(data) {
+  const menuContainer = document.getElementById('upcoming-menu');
+
+  data.forEach((item, index) => {
+      const menuItem = document.createElement('ul');
+      menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.innerHTML = `
+          <li class="menu-content">
+              <a href="#">${item.name}</a>
+          </li>
+      `;
+      menuContainer.appendChild(menuItem);
+  });
+};
+function generateAnnouce(data) {
+  const menuContainer = document.getElementById('annouce');
+
+  data.forEach((item, index) => {
+      const menuItem = document.createElement('div');
+      // menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.innerHTML = `
+          <p class="menu-content">
+               ${item.message}
+          </p>
+      `;
+      menuContainer.appendChild(menuItem);
+  });
+};
+function generatefeedback(data) {
+  const menuContainer = document.getElementById('feedback-list');
+
+  data.forEach((item, index) => {
+      const menuItem = document.createElement('li');
+      // menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.innerHTML = `
+      <i class="bi bi-check-circled"></i>
+               ${item.message}
+      `;
+      menuContainer.appendChild(menuItem);
+  });
+};
+function generateSuggest(data) {
+  const menuContainer = document.getElementById('suggest-list');
+
+  data.forEach((item, index) => {
+      const menuItem = document.createElement('li');
+      // menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.innerHTML = `
+      <i class="bi bi-check-circled"></i>
+               ${item.name}
+      `;
+      menuContainer.appendChild(menuItem);
+  });
+};
+function generateVotedMenu(data) {
+  const menuContainer = document.getElementById('vote-list');
+
+  data.forEach((item, index) => {
+      const menuItem = document.createElement('li');
+      // menuItem.classList.add('col-lg-6', 'menu-item');
+      menuItem.innerHTML = `
+      <i class="bi bi-check-circled"></i>
+               ${item.name}---${item.vote}
+      `;
+      menuContainer.appendChild(menuItem);
+  });
+};
+
+loadJSON("data/menuData.json", generateMenu);
+loadJSON("data/UpcomingMenuData.json", generateUpcomingMenu);
+loadJSON("data/announce.json", generateAnnouce);
+loadJSON("data/feedbacks.json", generatefeedback);
+loadJSON("data/suggest.json", generateSuggest);
+loadJSON("data/vote.json", generateVotedMenu);
+
+
+
+
+
+
+
+  function submitFormData(param) {
+    console.log(param);
     const form = document.querySelector('.php-email-form');
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -96,7 +177,10 @@ loadJSON("data/menuData.json", generateMenu);
     });
 }
 
-document.getElementById("submitFeedback").addEventListener("click", submitFormData)
+document.getElementById("submitFeedback").addEventListener("click", () => submitFormData('feedback'))
+document.getElementById("addweeklydish").addEventListener("click", () => submitFormData('addweeklydish'))
+document.getElementById("suggest").addEventListener("click", () => submitFormData('suggestdish'))
+
 
 
   /**
