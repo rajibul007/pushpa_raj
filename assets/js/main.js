@@ -28,9 +28,9 @@
 
   const handleVote = (item) => {
     console.log(item)
-    fetch(`http://voting_url?${item}`)
+    fetch(`https://rv1psv5feb.execute-api.us-east-1.amazonaws.com?name=${item}&action=vote`)
     .then(data => alert('Your vote submitted successfully !!!'))
-    .catch(error => console.log(error))
+    .catch(error => alert('failed'))
   }
 
   function generateMenu(data) {
@@ -135,10 +135,14 @@ loadJSON("data/vote.json", generateVotedMenu);
   function submitFormData(param) {
     console.log(param);
     const form = document.getElementById(param+"-form");
-    // form.addEventListener('submit',
-   //  function(event) {
-    //    event.preventDefault();
-        
+
+    form.addEventListener('submit',
+    function(event) {
+       event.preventDefault();
+       thisForm.querySelector('.loading').classList.add('d-block');
+       thisForm.querySelector('.error-message').classList.remove('d-block');
+       thisForm.querySelector('.sent-message').classList.remove('d-block');
+      });
         const formData = new FormData(form);
         let dataString = '';
         console.log(formData)
@@ -149,7 +153,7 @@ loadJSON("data/vote.json", generateVotedMenu);
         // Remove the last '&' character
         dataString = dataString.slice(0, -1);
 
-        const url = 'https://rv1psv5feb.execute-api.us-east-1.amazonaws.com'+"?" + dataString + "&" +"action="+ param;
+        const url = 'https://rv1psv5feb.execute-api.us-east-1.amazonaws.com/'+"?" + dataString + "&" +"action="+ param;
 
         // Send GET request to the API endpoint
         fetch(url, {
@@ -167,12 +171,25 @@ loadJSON("data/vote.json", generateVotedMenu);
         .then(data => {
             // Handle the response data here if needed
             //alert(data);
+            displaySuccess(form, "Successful Submission!!")
         })
         .catch(error => {
             console.log(error)
+            displayError(form, "Fialed Submission!!")
            // alert('There was a problem with your fetch operation:', error);
         });
     //};
+    function displayError(thisForm, error) {
+      thisForm.querySelector('.loading').classList.remove('d-block');
+      thisForm.querySelector('.error-message').innerHTML = error;
+      thisForm.querySelector('.error-message').classList.add('d-block');
+    }
+    function displaySuccess(thisForm, msg) {
+      thisForm.querySelector('.loading').classList.remove('d-block');
+      thisForm.querySelector('.sent-message').innerHTML = msg;
+      thisForm.querySelector('.sent-message').classList.add('d-block');
+      thisForm.reset(); 
+    }
 }
 
 document.getElementById("submitFeedback").addEventListener("click", () => submitFormData('submitFeedback'))
