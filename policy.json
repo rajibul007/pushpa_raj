@@ -1,0 +1,31 @@
+{
+    "Version": "2008-10-17",
+    "Id": "PolicyForPublicWebsiteContent",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::rajibul-swagger-s3/*"
+        },
+        {
+            "Sid": "AllowCloudFrontServicePrincipalReadOnly",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::rajibul-swagger-s3/*",
+            "Condition": {
+                "StringEquals": {
+                    "AWS:SourceArn": "arn:aws:cloudfront::533266967613:distribution/ESS7TF66MIAUC"
+                }
+            }
+        }
+    ]
+}
+
+

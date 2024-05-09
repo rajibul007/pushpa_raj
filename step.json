@@ -1,0 +1,37 @@
+{
+    "Comment": "A Step Function to call Lambdas based on the presence of keys in the input",
+    "StartAt": "CheckKeys",
+    "States": {
+        "CheckKeys": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.a",
+                    "IsPresent": true,
+                    "Next": "CallALambda"
+                },
+                {
+                    "Variable": "$.b",
+                    "IsPresent": true,
+                    "Next": "CallBLambda"
+                }
+            ],
+            "Default": "NoValidKeys"
+        },
+        "CallALambda": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:ALambda",
+            "End": true
+        },
+        "CallBLambda": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:BLambda",
+            "End": true
+        },
+        "NoValidKeys": {
+            "Type": "Fail",
+            "Cause": "No valid keys found in the input",
+            "Error": "NoValidKeysError"
+        }
+    }
+}
