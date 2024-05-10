@@ -32,9 +32,9 @@
     .then(data => alert('Your vote submitted successfully !!!'))
     .catch(error => alert('failed'))
   }
-  const getLikeButton = (id) => ( `
+  const getLikeButton = (id, type) => ( `
   <div id="vote-button">
-    <input type="checkbox" id="checkbox-${id}" />
+    <input type="checkbox" id="checkbox-${id}" ${type==='show' ? "checked disabled" : ""}/>
     <label for="checkbox-${id}">
       <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
         <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
@@ -157,12 +157,13 @@ function generateVotedMenu(data) {
   const menuContainer = document.getElementById('vote-list');
 
   data.forEach((item, index) => {
-      const menuItem = document.createElement('li');
-      // menuItem.classList.add('col-lg-6', 'menu-item');
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('flex');
       menuItem.innerHTML = `
       <i class="bi bi-check-circled"></i>
-               ${item.name}---${item.vote}
+             <a> ${item.name}${getLikeButton(item.name, 'show')}+${item.vote}</a>
       `;
+      
       menuContainer.appendChild(menuItem);
   });
 };
