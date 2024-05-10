@@ -1860,3 +1860,18 @@ svg{
   0%{transform:scale(1.4);}
   100%{transform:scale(1);}
 }
+
+.vote-list-content {
+  display: flex;
+  justify-content: right;
+}
+
+.vote-text {
+  padding-top: 6px;
+}
+
+.vote-count {
+  padding-top: 10px;
+  font-size: 12px;
+  font-style: italic;
+}

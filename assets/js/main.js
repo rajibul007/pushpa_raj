@@ -160,10 +160,13 @@ function generateVotedMenu(data) {
 
   data.forEach((item, index) => {
       const menuItem = document.createElement('div');
-      menuItem.classList.add('flex');
+      menuItem.classList.add('col-lg-6');
       menuItem.innerHTML = `
-      <i class="bi bi-check-circled"></i>
-             <a> ${item.name}${getLikeButton(item.name, 'show')}+${item.vote}</a>
+             <div class="vote-list-content"> 
+                <span class="vote-text">${item.name}</span>
+                ${getLikeButton(item.name, 'show')}
+                <span class="vote-count">${item.vote} Likes</span>
+              </div>
       `;
       
       menuContainer.appendChild(menuItem);
