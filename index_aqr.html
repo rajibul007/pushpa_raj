@@ -88,7 +88,7 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="menu section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -102,7 +102,19 @@
             <p class="fst-italic">
               Upcoming Menu
             </p>
-            <div id="upcoming-menu" >
+            <div class="row" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="mn-flters">
+                  <li data-filter=".filter-monday" id="monday">Monday</li>
+                  <li data-filter=".filter-tuesday">Tuesday</li>
+                  <li data-filter=".filter-wednesday">Wednesday</li>
+                  <li data-filter=".filter-thursday">Thursday</li>
+                  <li data-filter=".filter-friday">Friday</li>
+                </ul>
+              </div>
+            </div>
+    
+            <div class="row upcoming-menu" id="upcoming-menu" data-aos="fade-up" data-aos-delay="200">
             </div>
           </div>
         </div>
