@@ -103,16 +103,18 @@ function generateUpcomingMenu(data) {
   const menuContainer = document.getElementById('upcoming-menu');
 
   data.forEach((item, index) => {
-      const menuItem = document.createElement('ul');
-      menuItem.classList.add('col-lg-6', 'menu-item');
+      const menuItem = document.createElement('div');
+      const id = item.name.replaceAll(' ', '') + index;
+      menuItem.classList.add('col-lg-6', 'mn-item', `filter-${item.day.toLowerCase()}`);
       menuItem.innerHTML = `
-          <li class="menu-content">
+          <div class="menu-content" id=${id}>
               <a href="#">${item.name}</a>
-          </li>
+          </div>
       `;
       menuContainer.appendChild(menuItem);
   });
 };
+
 function generateAnnouce(data) {
   const menuContainer = document.getElementById('annouce');
 
@@ -158,10 +160,13 @@ function generateVotedMenu(data) {
 
   data.forEach((item, index) => {
       const menuItem = document.createElement('div');
-      menuItem.classList.add('flex');
+      menuItem.classList.add('col-lg-6');
       menuItem.innerHTML = `
-      <i class="bi bi-check-circled"></i>
-             <a> ${item.name}${getLikeButton(item.name, 'show')}+${item.vote}</a>
+             <div class="vote-list-content"> 
+                <span class="vote-text">${item.name}</span>
+                ${getLikeButton(item.name, 'show')}
+                <span class="vote-count">${item.vote} Likes</span>
+              </div>
       `;
       
       menuContainer.appendChild(menuItem);
@@ -450,6 +455,40 @@ document.getElementById("notify-submit").addEventListener("click", () => submitF
         });
       }, true);
     }
+
+  });
+
+  /**
+   * Upcoming-Menu isotope and filter
+   */
+  window.addEventListener('load', () => {
+    let menuContainer = select('.upcoming-menu');
+    if (menuContainer) {
+      let menuIsotope = new Isotope(menuContainer, {
+        itemSelector: '.mn-item',
+        layoutMode: 'fitRows'
+      });
+
+      let menuFilters = select('#mn-flters li', true);
+
+      on('click', '#mn-flters li', function(e) {
+        e.preventDefault();
+        menuFilters.forEach(function(el) {
+          el.classList.remove('filter-active');
+        });
+        this.classList.add('filter-active');
+
+        menuIsotope.arrange({
+          filter: this.getAttribute('data-filter')
+        });
+        menuIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
+      }, true);
+    }
+    let mondayBtn = document.getElementById('monday');
+    console.log(mondayBtn);
+    mondayBtn.click();
 
   });
 
