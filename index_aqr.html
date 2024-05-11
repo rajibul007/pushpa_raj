@@ -192,7 +192,18 @@
           <a href="#notify" style="float:right;" class="book-a-table-btn scrollto d-none d-lg-flex">Add Announcement</a>
         <div class="section-title">
           <h2>Latest Announcement</h2>
-          <p>See What's New</p>
+          <p id="datetime"></p>
+          <script>
+            // Get current date and time
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Add leading zero if needed
+            var day = now.getDate().toString().padStart(2, '0'); // Add leading zero if needed
+            var date = `${year}-${month}-${day}`; 
+            var datetime = now.toLocaleString();
+            // Insert date and time into HTML
+            document.getElementById("datetime").innerHTML = date;
+          </script>
           <p>
           <div id="annouce">
           </div>
@@ -229,36 +240,32 @@
               </div>
             </div><!-- End testimonial item -->
 
-            <!-- <div class="swiper-slide">
+            <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
                   <img src="assets/img/event-private.jpg" class="img-fluid" alt="">
                 </div>
                 <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Foodie Feedback</h3>
-                  <!-- <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
-                  </p> -->
-                  <!-- <ul id="feedback-list">
+                  <ul id="feedback-list">
                   </ul>
                 </div>
-              </div> --> -->
-            <!-- </div>End testimonial item -->
+              </div>
+            </div>
 
-            <!-- <div class="swiper-slide">
+            <div class="swiper-slide">
               <div class="row event-item">
                 <div class="col-lg-6">
                   <img src="assets/img/event-custom.jpg" class="img-fluid" alt="">
-                </div> -->
-                <!-- <div class="col-lg-6 pt-4 pt-lg-0 content">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 content">
                   <h3>Suggestion Spotlight</h3>
                   <ul id="suggest-list">
                     
                   </ul>
                 </div>
-              </div> -->
-            <!-- </div>End testimonial item -->
+              </div>
+            </div>
 
           </div>
           <div class="swiper-pagination"></div>

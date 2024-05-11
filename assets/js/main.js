@@ -9,7 +9,6 @@
 
 (function() {
   "use strict";
-  
   function loadJSON(path, callback) {
     fetch(path) // Adjust the path to your JSON file
         .then(response => {
@@ -108,9 +107,7 @@ function generateUpcomingMenu(data) {
       menuItem.classList.add('col-lg-6', 'mn-item', `filter-${item.day.toLowerCase()}`);
       menuItem.innerHTML = `
           <div class="menu-content" id=${id}>
-              <a href="#">${item.name}</a>
-          </div>
-      `;
+          <a href="#" style="color: white; font-size: 15px; font-family: Arial, sans-serif;"><span>&#127858;</span> ${item.name}</a> `;
       menuContainer.appendChild(menuItem);
   });
 };
@@ -123,7 +120,7 @@ function generateAnnouce(data) {
       menuItem.classList.add('col-lg-6', 'menu-item');
       menuItem.innerHTML = `
           <span class="menu-content">
-               ${item.message}
+          <span class="announcement">&#128227;</span> ${item.message}
           </span>
       `;
       menuContainer.appendChild(menuItem);

@@ -1,11 +1,10 @@
 [
     {"id": 1, "name": "Paneer Tikka" , "day": "monday"},
-    {"id": 1, "name": "Paneer Tikka" , "day": "monday"},
-    {"id": 1, "name": "Paneer Tikka" , "day": "monday"},
-    {"id": 1, "name": "Paneer Tikka" , "day": "monday"},
-    {"id": 1, "name": "Paneer Tikka" , "day": "monday"},
-    {"id": 2, "name": "Chicken Biryani","day":"tuesday"},
-    {"id": 3, "name": "Aloo Gobi","day":"wednesday"},
-    {"id": 1, "name": "Paneer Tikka" , "day": "thursday"},
-    {"id": 2, "name": "Chicken Biryani","day":"friday"}
+    {"id": 2, "name": "Chicken Biryana" , "day": "monday"},
+    {"id": 4, "name": "Aloo Gobi" , "day": "friday"},
+    {"id": 5, "name": "Paneer Tikka" , "day": "friday"},
+    {"id": 6, "name": "Chicken Biryani","day":"tuesday"},
+    {"id": 7, "name": "Aloo Gobi","day":"wednesday"},
+    {"id": 8, "name": "Paneer Tikka" , "day": "thursday"},
+    {"id": 8, "name": "Chicken Biryani","day":"friday"}
 ]
